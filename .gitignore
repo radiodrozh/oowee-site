@@ -1,0 +1,8 @@
+.next/
+node_modules/
+out/
+coverage/
+.vercel/
+*.log
+next-env.d.ts
+
