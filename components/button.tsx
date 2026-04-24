@@ -20,8 +20,10 @@ type ButtonAsLinkProps = ButtonBaseProps & {
 };
 
 type ButtonAsButtonProps = ButtonBaseProps & {
-  href?: never;
+  href?: undefined;
   onClick?: () => void;
+  rel?: never;
+  target?: never;
   type?: "button" | "submit" | "reset";
 };
 
@@ -61,7 +63,7 @@ export function Button({
     </>
   );
 
-  if ("href" in props) {
+  if (props.href !== undefined) {
     return (
       <Link className={classes} href={props.href} rel={props.rel} target={props.target}>
         {content}
