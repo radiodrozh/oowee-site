@@ -22,26 +22,24 @@ export function ArticleImageSection({
   rightText
 }: ArticleImageSectionProps) {
   return (
-    <section className="mb-[44px] w-full md:mb-[64px]">
+    <section className="mb-[64px] w-full md:mb-[96px]">
       <h2 className="hidden font-[family-name:var(--font-heading)] text-[24px] leading-[36px] uppercase tracking-[0.03em] text-[var(--foreground)] md:block">
         {title}
       </h2>
 
       <div className="mt-0 md:mt-6">
-        <div className="grid grid-cols-2 gap-4 md:hidden">
-          <div className="flex items-start">
-            <h2 className="font-[family-name:var(--font-heading)] text-[24px] leading-[36px] uppercase tracking-[0.03em] text-[var(--foreground)]">
-              {title}
-            </h2>
-          </div>
+        <div className="md:hidden">
+          <h2 className="font-[family-name:var(--font-heading)] text-[24px] leading-[36px] uppercase tracking-[0.03em] text-[var(--foreground)]">
+            {title}
+          </h2>
 
-          <div>
+          <div className="mt-4">
             <div className="relative aspect-[0.92/1] w-full overflow-hidden">
               <Image
                 alt={imageAlt}
                 className="object-cover"
                 fill
-                sizes="50vw"
+                sizes="100vw"
                 src={image}
               />
             </div>
@@ -54,7 +52,7 @@ export function ArticleImageSection({
           </div>
         </div>
 
-        <div className="mt-8 grid w-full gap-x-6 gap-y-6 min-[440px]:grid-cols-2 md:hidden">
+        <div className="mt-6 grid w-full gap-x-6 gap-y-6 min-[440px]:grid-cols-2 md:hidden">
           <div className="flex flex-col gap-2">
             <h3 className="font-[family-name:var(--font-heading)] text-[12px] lowercase leading-[18px] tracking-[0.1em] text-[var(--foreground)]">
               {leftTitle}

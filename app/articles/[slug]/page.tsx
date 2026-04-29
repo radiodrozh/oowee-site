@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Button } from "@/components/button";
 import { Container } from "@/components/container";
+import { JoinButton } from "@/components/join-button";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
 
 type ArticlePageProps = {
@@ -79,7 +80,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
           {/* DESKTOP HERO */}
           <div className="hidden md:grid md:grid-cols-2 md:gap-10">
-            <div className="h-[320px] w-full overflow-hidden">
+            <div className="aspect-square w-full overflow-hidden">
               <img
                 src={frontmatter.cover}
                 alt={frontmatter.title}
@@ -87,41 +88,44 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               />
             </div>
 
-            <div className="grid h-[320px] grid-rows-[auto_1fr_auto]">
-              <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-[36px]">
+              <div className="flex w-full items-center justify-between">
                 <p className="font-[family-name:var(--font-heading)] text-[16px] lowercase leading-6 tracking-[0.1em] text-[var(--muted)]">
                   {frontmatter.category}
                 </p>
 
-                <h1 className="font-[family-name:var(--font-heading)] text-[32px] uppercase leading-[46px] tracking-[0.03em] text-[var(--foreground)]">
-                  {frontmatter.title}
-                </h1>
-
-                <p className="text-[16px] leading-[24px] text-[var(--foreground)] md:text-[16px] md:leading-[24px]">
-                  {frontmatter.description}
+                <p className="font-[family-name:var(--font-heading)] text-[16px] lowercase leading-6 tracking-[0.1em] text-[var(--muted)]">
+                  {formattedDate}
                 </p>
               </div>
 
-              <div />
+              <h1 className="font-[family-name:var(--font-heading)] text-[32px] uppercase leading-[46px] tracking-[0.03em] text-[var(--foreground)]">
+                {frontmatter.title}
+              </h1>
 
-              <p className="font-[family-name:var(--font-heading)] text-[16px] lowercase leading-6 tracking-[0.1em] text-[var(--muted)]">
-                {formattedDate}
+              <p className="text-[16px] leading-[24px] text-[var(--foreground)]">
+                {frontmatter.description}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 md:mt-16 [&>h2]:mt-10 [&>h2+section]:mt-4 [&>h2:first-child]:mt-0 md:[&>h2]:mt-14 md:[&>h2+section]:mt-6 md:[&>h2:first-child]:mt-0">
+        <div className="mt-16 md:mt-24 [&>h2+section]:mt-4 md:[&>h2+section]:mt-6">
           {content}
         </div>
 
-        <div className="mt-10 md:mt-16">
-          <Link
-            href="/"
-            className="inline-flex items-center underline underline-offset-4"
-          >
-            к списку статей
-          </Link>
+        <div className="flex flex-col">
+          <p className="mb-8 font-[family-name:var(--font-heading)] text-[12px] lowercase leading-[18px] tracking-[0.1em] text-[var(--muted)] md:text-[16px] md:leading-6">
+            {frontmatter.source}
+          </p>
+
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <Button className="w-full md:w-auto" href="/" icon="arrow-left" variant="outline">
+              другие статьи
+            </Button>
+
+            <JoinButton className="w-full md:w-auto" />
+          </div>
         </div>
       </Container>
     </main>

@@ -8,11 +8,10 @@ export const navigationItems = [
   },
   {
     href: "/shop",
-    label: "магазин"
+    label: "мерч"
   },
   {
     href: "/about",
     label: "о проекте"
   }
 ] as const;
-

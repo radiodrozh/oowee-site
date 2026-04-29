@@ -31,21 +31,51 @@ type ButtonProps = ButtonAsLinkProps | ButtonAsButtonProps;
 
 function getButtonClasses(variant: ButtonVariant, className?: string) {
   return [
-    "inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full border px-4 py-2 text-[12px] leading-none tracking-[0.03em] transition-opacity duration-200 hover:opacity-90 md:min-h-12 md:px-6",
+    "group inline-flex min-h-[40px] shrink-0 items-center justify-center rounded-full border py-2 transition-colors duration-200",
     variant === "primary"
-      ? "border-[var(--foreground)] bg-[var(--foreground)] text-white"
-      : "border-[var(--foreground)] bg-transparent text-[var(--foreground)]",
+      ? "gap-1.5 border-[#181920] bg-[#181920] pl-4 pr-5 text-[#FFFFFF] hover:bg-[#BEF38D] hover:text-[#181920]"
+      : "gap-1.5 border-[#181920] bg-[#FFFFFF] pl-4 pr-5 text-[#181920] hover:bg-[#181920] hover:text-[#FFFFFF]",
     className
   ]
     .filter(Boolean)
     .join(" ");
 }
 
-function ButtonIconAsset({ icon }: { icon: ButtonIcon }) {
-  const src = icon === "telegram" ? "/icons/telegram.svg" : "/icons/arrow-left.svg";
-  const alt = icon === "telegram" ? "" : "";
+function ButtonIconAsset({
+  icon,
+  variant
+}: {
+  icon: ButtonIcon;
+  variant: ButtonVariant;
+}) {
+  if (icon === "telegram") {
+    return <Image alt="" aria-hidden height={16} src="/icons/telegram.svg" width={16} />;
+  }
 
-  return <Image alt={alt} aria-hidden height={16} src={src} width={16} />;
+  if (variant === "outline") {
+    return (
+      <span className="relative h-6 w-6 shrink-0 translate-y-[-0.5px]">
+        <Image
+          alt=""
+          aria-hidden
+          className="absolute inset-0 transition-opacity duration-200 group-hover:opacity-0"
+          height={24}
+          src="/icons/arrow-left.svg"
+          width={24}
+        />
+        <Image
+          alt=""
+          aria-hidden
+          className="absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+          height={24}
+          src="/icons/arrow-left-white.svg"
+          width={24}
+        />
+      </span>
+    );
+  }
+
+  return <Image alt="" aria-hidden height={16} src="/icons/arrow-left.svg" width={16} />;
 }
 
 export function Button({
@@ -58,8 +88,10 @@ export function Button({
   const classes = getButtonClasses(variant, className);
   const content = (
     <>
-      {icon ? <ButtonIconAsset icon={icon} /> : null}
-      <span>{children}</span>
+      {icon ? <ButtonIconAsset icon={icon} variant={variant} /> : null}
+      <span className="inline-flex items-center self-center font-[family-name:var(--font-heading)] text-[16px] lowercase leading-[1] tracking-[0.03em]">
+        {children}
+      </span>
     </>
   );
 
