@@ -54,7 +54,7 @@ function ButtonIconAsset({
 
   if (variant === "outline") {
     return (
-      <span className="relative h-6 w-6 shrink-0 translate-y-[-0.5px]">
+      <span className="relative flex h-6 w-6 shrink-0 items-center justify-center translate-y-[-0.5px]">
         <Image
           alt=""
           aria-hidden

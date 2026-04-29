@@ -1,6 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Button } from "@/components/button";
 import { Container } from "@/components/container";
 import { JoinButton } from "@/components/join-button";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
@@ -114,15 +115,36 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           {content}
         </div>
 
-        <div className="flex flex-col">
-          <p className="mb-8 font-[family-name:var(--font-heading)] text-[12px] lowercase leading-[18px] tracking-[0.1em] text-[var(--muted)] md:text-[16px] md:leading-6">
+        <div className="flex flex-col gap-8">
+          <p className="font-[family-name:var(--font-heading)] text-[12px] lowercase leading-[18px] tracking-[0.1em] text-[var(--muted)] md:text-[16px] md:leading-6">
             {frontmatter.source}
           </p>
 
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <Button className="w-full md:w-auto" href="/" icon="arrow-left" variant="outline">
-              другие статьи
-            </Button>
+            <Link
+  className="group inline-flex h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[#181920] bg-white px-6 font-[family-name:var(--font-heading)] text-[16px] lowercase leading-none tracking-[0.03em] text-[#181920] transition-colors duration-200 hover:bg-[#181920] hover:text-white md:w-auto"
+  href="/"
+>
+  <span className="relative flex h-5 w-5 shrink-0 items-center justify-center">
+    <Image
+      alt=""
+      aria-hidden
+      className="absolute inset-0 h-full w-full transition-opacity duration-200 group-hover:opacity-0"
+      height={20}
+      src="/icons/arrow-left.svg"
+      width={20}
+    />
+    <Image
+      alt=""
+      aria-hidden
+      className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      height={20}
+      src="/icons/arrow-left-white.svg"
+      width={20}
+    />
+  </span>
+  <span className="leading-none">другие статьи</span>
+</Link>
 
             <JoinButton className="w-full md:w-auto" />
           </div>
