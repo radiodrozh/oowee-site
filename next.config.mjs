@@ -1,13 +1,16 @@
 import createMDX from "@next/mdx";
 
 const withMDX = createMDX({
-  extension: /\.(md|mdx)$/
+  extension: /\.(md|mdx)$/,
 });
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  pageExtensions: ["ts", "tsx", "md", "mdx"]
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
 };
 
 export default withMDX(nextConfig);
-
